@@ -39,52 +39,42 @@ class ViewController: UIViewController {
 //    var stockCardsData = [Data]()
     var stockCardsData = [StockCardData]()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
 //        readData(company: "AAPL")
-        mboum(stockSymbol: "AAPL") { (dataIn) in
-            self.dataStockInfo.append(dataIn)
-        }
-
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) { [self] in
-//            if dataStockInfo[0].count == 0 {
-//                dataStockInfo.removeFirst()
-//            }
+//        mboum(stockSymbol: "AAPL") { (dataIn) in
+//            self.dataStockInfo.append(dataIn)
+//        }
 //
-//            parseStocksDataToJSON()
-            
-            let str = StockTableCard(name: "Apple",
-                                     logo: URL(string: "apple_logo.png")!,
-                                     ticker: "AAPL",
-                                     industry: "Tech",
-                                     currentPrice: 120.0,
-                                     previousClosePrice: 116.0,
-                                     isFavourite: false)
-            let codedStr = try? JSONEncoder().encode(str)
-            
-            saveCoreData(withStringTitle: codedStr!)
-            readCoreData()
-//            clearCoreData()
-            print(stockCardsData[0].cardData!)
-            print(type(of: stockCardsData[0].cardData!))
-            parseDataToJSON(data: stockCardsData[0].cardData!)
-        }
-    }
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) { [self] in
+////            if dataStockInfo[0].count == 0 {
+////                dataStockInfo.removeFirst()
+////            }
+////
+////            parseStocksDataToJSON()
+//
+//            let str = StockTableCard(name: "Apple",
+//                                     logo: URL(string: "apple_logo.png")!,
+//                                     ticker: "AAPL",
+//                                     industry: "Tech",
+//                                     currentPrice: 120.0,
+//                                     previousClosePrice: 116.0,
+//                                     isFavourite: false)
+//            let codedStr = try? JSONEncoder().encode(str)
+//
+//            saveCoreData(withStringTitle: codedStr!)
+//            readCoreData()
+////            clearCoreData()
+//            print(stockCardsData[0].cardData!)
+//            print(type(of: stockCardsData[0].cardData!))
+//            parseDataToJSON(data: stockCardsData[0].cardData!)
+//        }
     
-    //func getStockList(completion: @escaping ([Data]) -> ()) {
-    //
-    //    //
-    //    for company in StockList().stockList {
-    //        getStockInfo(stockSymbol: company) { (dataIn) -> () in
-    //            self.dadta.append(dataIn)
-    //            print(self.dadta.count)
-    //        }
-    //    }
-    ////        print("get \(dadta.count) elements")
-    //    dadta.removeFirst()
-    //    completion(dadta)
-    //}
+        
+//        websocket.createConnection()
+    }
 
     func getStockInfo(stockSymbol symbol: String, completion: @escaping (Data) -> ()) {
         
@@ -162,6 +152,7 @@ class ViewController: UIViewController {
                 print(error)
             }
         }
+        
     //    for (key, data) in dataStockPrice {
     //        do {
     //            let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String: Any]

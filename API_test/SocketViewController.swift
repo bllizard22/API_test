@@ -9,12 +9,15 @@ import UIKit
 import Starscream
 
 class SocketViewController: UIViewController {
-
-    let priceSocket = PriceSocket()
     
     @IBOutlet weak var connectionButton: UIButton!
     @IBOutlet weak var writeButton: UIButton!
     @IBOutlet weak var priceLabel: UILabel!
+    
+    @objc let priceSocket = PriceSocket()
+    var priceObservation: NSKeyValueObservation?
+    var tickerObservation: NSKeyValueObservation?
+    var tickerKVO: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +28,17 @@ class SocketViewController: UIViewController {
         } else {
             connectionButton.titleLabel?.font = UIFont.systemFont(ofSize: 30, weight: .bold)
         }
+        
+        priceObservation = observe(\SocketViewController.priceSocket.currentPrice, options: [.new], changeHandler: { (vc, change) in
+            guard let updatedPrice = change.newValue else { return }
+            print("New price \(updatedPrice)")
+            self.priceLabel.text = "\(self.tickerKVO!) \(String(updatedPrice))"
+        })
+        tickerObservation = observe(\SocketViewController.priceSocket.currentTicker, options: [.new], changeHandler: { (vc, change) in
+            guard let updatedTicker = change.newValue as? String else { return }
+            print("New ticker \(updatedTicker)")
+            self.tickerKVO = updatedTicker
+        })
 
         priceSocket.createConnection()
     }
@@ -49,16 +63,28 @@ class SocketViewController: UIViewController {
     }
     
     @IBAction func writeButtonDidPressed(_ sender: UIButton) {
-//        let stringToWrite = "hello there!"
-//        print("Writed text: \(stringToWrite)")
-//        priceSocket.webSocket.write(string: stringToWrite)
-        let json = ["type":"subscribe", "symbol":"AAPL"]
+        subscribe(symbol: "AAPL")
+        subscribe(symbol: "TSLA")
+        subscribe(symbol: "YNDX")
+        subscribe(symbol: "KO")
+//        subscribe(symbol: "BINANCE:BTCUSDT")
+    }
+    
+    func subscribe(symbol: String) {
+        let json = ["type": "subscribe", "symbol": symbol]
         let data = try! JSONEncoder().encode(json)
-        print("Writed text: \(json)")
+        print("Subscribed at \(symbol)")
         priceSocket.webSocket.write(data: data)
     }
     
-    
+    func updatePriceLabel(price: Float, ticker: String) {
+//        print(priceSocket.currentTicker)
+//        print(priceSocket.currentPrice)
+        print(price)
+        print(ticker)
+        priceLabel.text = "\(ticker) = \(price))"
+//        priceLabel.text = "\(String(describing: priceSocket.currentTicker)) = \(String(describing: priceSocket.currentPrice))"
+    }
 
 }
 

@@ -62,9 +62,9 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jlj-H4-MoF">
-                                <rect key="frame" x="160.5" y="636" width="93" height="20"/>
+                                <rect key="frame" x="87" y="636" width="240" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="93" id="qKq-ch-Azf"/>
+                                    <constraint firstAttribute="width" constant="240" id="qKq-ch-Azf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <nil key="textColor"/>

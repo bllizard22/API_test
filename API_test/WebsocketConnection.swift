@@ -7,11 +7,15 @@
 
 import Foundation
 import Starscream
+import SwiftyJSON
 
-class PriceSocket: WebSocketDelegate {
+class PriceSocket: NSObject, WebSocketDelegate {
     
     var isConnected = false
     var webSocket: WebSocket!
+    
+    @objc dynamic var currentTicker: String!
+    @objc dynamic var currentPrice = 0.0
     
     func didReceive(event: WebSocketEvent, client: WebSocket) {
         switch event {
@@ -22,13 +26,7 @@ class PriceSocket: WebSocketDelegate {
                 isConnected = false
                 print("websocket is disconnected: \(reason) with code: \(code)")
             case .text(let string):
-                print("Received text: \(string)")
-                let dataEncoded = Data(string.utf8)
-                let json = try! JSONSerialization.jsonObject(with: dataEncoded, options: .allowFragments) as! [String: String]
-                if json["type"] as! String == "trade" {
-                    let data = json["data"] as! [String: Any]
-                    print(data["p"] as! String)
-                }
+                parseSocketData(string: string)
             case .binary(let data):
                 print("Received data: \(data.count)")
             case .ping(_):
@@ -49,19 +47,29 @@ class PriceSocket: WebSocketDelegate {
             }
     }
     
+    private func parseSocketData(string: String) {
+        let dataEncoded = Data(string.utf8)
+        let json = try! JSON(data: dataEncoded, options: .allowFragments)
+        if json["type"] == "trade", json["data"].count > 0{
+            let last = json["data"].count-1
+            let data = json["data"][last]
+            let price = data["p"]
+            let ticker = data["s"]
+            currentTicker = ticker.stringValue
+            currentPrice = price.doubleValue
+            print("Trade with \(ticker) at $\(price)")
+//            completion(ticker, price)
+        }
+    }
+    
     func createConnection() {
         var request = URLRequest(url: URL(string: "wss://ws.finnhub.io?token=c0vhf5748v6pqdk9hmq0")!)
-//        var request = URLRequest(url: URL(string: "wss://echo.websocket.org")!)
         request.timeoutInterval = 5
         
-//        let websocket = WebSocket(request: request)
         webSocket = WebSocket(request: request)
         webSocket.delegate = self
         webSocket.connect()
-        webSocket.write(string: "Hello!")
-//        let json = ["type":"subscribe", "symbol":"AAPL"]
-//        let data = try! JSONEncoder().encode(json)
-//        websocket.write(data: data)
-        
+
+//        NotificationCenter.default.addObserver(SocketViewController.self, selector: #selector(SocketViewController().updatePriceLabel), name: .none, object: nil)
     }
 }

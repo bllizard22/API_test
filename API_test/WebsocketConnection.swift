@@ -68,7 +68,7 @@ class PriceSocket: NSObject, WebSocketDelegate {
         
         webSocket = WebSocket(request: request)
         webSocket.delegate = self
-        webSocket.connect()
+//        webSocket.connect()
 
 //        NotificationCenter.default.addObserver(SocketViewController.self, selector: #selector(SocketViewController().updatePriceLabel), name: .none, object: nil)
     }

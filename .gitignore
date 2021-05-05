@@ -1,0 +1,5 @@
+/Cartfile
+/Cartfile.resolved
+/Carthage/
+/**/*.xcuserstate
+/**/*.xcbkptlist

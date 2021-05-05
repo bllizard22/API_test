@@ -11,7 +11,7 @@
 		01484BF825FF5FA10044FC00 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 01484BF725FF5FA10044FC00 /* Starscream */; };
 		01484BFC25FF67190044FC00 /* SocketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01484BFB25FF67190044FC00 /* SocketViewController.swift */; };
 		01484C0025FF8AF70044FC00 /* MessageStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01484BFF25FF8AF70044FC00 /* MessageStruct.swift */; };
-		018C679625FF9BA60069D4E1 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 018C679525FF9BA60069D4E1 /* SwiftyJSON */; };
+		0149E4E92642E37F00A03693 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 0149E4E82642E37F00A03693 /* SwiftyJSON */; };
 		854FAE9325F9DFD2006B3122 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854FAE9225F9DFD2006B3122 /* AppDelegate.swift */; };
 		854FAE9525F9DFD2006B3122 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854FAE9425F9DFD2006B3122 /* SceneDelegate.swift */; };
 		854FAE9725F9DFD2006B3122 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854FAE9625F9DFD2006B3122 /* ViewController.swift */; };
@@ -41,7 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				018C679625FF9BA60069D4E1 /* SwiftyJSON in Frameworks */,
+				0149E4E92642E37F00A03693 /* SwiftyJSON in Frameworks */,
 				01484BF825FF5FA10044FC00 /* Starscream in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,11 +49,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0149E4E72642E37F00A03693 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		854FAE8625F9DFD2006B3122 = {
 			isa = PBXGroup;
 			children = (
 				854FAE9125F9DFD2006B3122 /* API_test */,
 				854FAE9025F9DFD2006B3122 /* Products */,
+				0149E4E72642E37F00A03693 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,12 +81,12 @@
 				854FAE9625F9DFD2006B3122 /* ViewController.swift */,
 				01484BF325FF5F1A0044FC00 /* WebsocketConnection.swift */,
 				01484BFB25FF67190044FC00 /* SocketViewController.swift */,
+				01484BFF25FF8AF70044FC00 /* MessageStruct.swift */,
 				854FAE9825F9DFD2006B3122 /* Main.storyboard */,
 				854FAE9B25F9DFD6006B3122 /* Assets.xcassets */,
 				854FAE9D25F9DFD6006B3122 /* LaunchScreen.storyboard */,
 				854FAEA025F9DFD6006B3122 /* Info.plist */,
 				8570DF4125FB2D4000A0271B /* API_coredata.xcdatamodeld */,
-				01484BFF25FF8AF70044FC00 /* MessageStruct.swift */,
 			);
 			path = API_test;
 			sourceTree = "<group>";
@@ -93,6 +101,7 @@
 				854FAE8B25F9DFD2006B3122 /* Sources */,
 				854FAE8C25F9DFD2006B3122 /* Frameworks */,
 				854FAE8D25F9DFD2006B3122 /* Resources */,
+				01DB3E7D260E0890006C61ED /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -101,7 +110,7 @@
 			name = API_test;
 			packageProductDependencies = (
 				01484BF725FF5FA10044FC00 /* Starscream */,
-				018C679525FF9BA60069D4E1 /* SwiftyJSON */,
+				0149E4E82642E37F00A03693 /* SwiftyJSON */,
 			);
 			productName = API_test;
 			productReference = 854FAE8F25F9DFD2006B3122 /* API_test.app */;
@@ -132,7 +141,7 @@
 			mainGroup = 854FAE8625F9DFD2006B3122;
 			packageReferences = (
 				01484BF625FF5FA10044FC00 /* XCRemoteSwiftPackageReference "Starscream" */,
-				018C679425FF9BA60069D4E1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				0168D149260E197200BE39F9 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = 854FAE9025F9DFD2006B3122 /* Products */;
 			projectDirPath = "";
@@ -155,6 +164,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		01DB3E7D260E0890006C61ED /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellScript = "
+";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		854FAE8B25F9DFD2006B3122 /* Sources */ = {
@@ -230,6 +259,9 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphoneos*]" = arm64;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -316,6 +348,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RTRWQZT32D;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = API_test/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -336,6 +372,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RTRWQZT32D;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = API_test/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -381,7 +421,7 @@
 				minimumVersion = 4.0.4;
 			};
 		};
-		018C679425FF9BA60069D4E1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+		0168D149260E197200BE39F9 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
 			requirement = {
@@ -397,9 +437,9 @@
 			package = 01484BF625FF5FA10044FC00 /* XCRemoteSwiftPackageReference "Starscream" */;
 			productName = Starscream;
 		};
-		018C679525FF9BA60069D4E1 /* SwiftyJSON */ = {
+		0149E4E82642E37F00A03693 /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 018C679425FF9BA60069D4E1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			package = 0168D149260E197200BE39F9 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -13,6 +13,7 @@ class SocketViewController: UIViewController {
     @IBOutlet weak var connectionButton: UIButton!
     @IBOutlet weak var writeButton: UIButton!
     @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var connectionLabel: UILabel!
     
     @objc let priceSocket = PriceSocket()
     var priceObservation: NSKeyValueObservation?
@@ -21,6 +22,8 @@ class SocketViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        priceLabel.text = ""
         
         print(UIDevice().name)
         if UIDevice().name == "iPhone 8" {
@@ -32,7 +35,7 @@ class SocketViewController: UIViewController {
         priceObservation = observe(\SocketViewController.priceSocket.currentPrice, options: [.new], changeHandler: { (vc, change) in
             guard let updatedPrice = change.newValue else { return }
             print("New price \(updatedPrice)")
-            self.priceLabel.text = "\(self.tickerKVO!) \(String(updatedPrice))"
+            self.priceLabel.text = "\(self.tickerKVO!) $\(String(updatedPrice))"
         })
         tickerObservation = observe(\SocketViewController.priceSocket.currentTicker, options: [.new], changeHandler: { (vc, change) in
             guard let updatedTicker = change.newValue as? String else { return }
@@ -43,21 +46,12 @@ class SocketViewController: UIViewController {
         priceSocket.createConnection()
     }
     
-//    var iteration = 2
-//    func updateLabel() {
-//        iteration = iteration == Int.max ? 0 : (iteration+1)
-//        DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
-//            self.priceLabel.text = "\(self.iteration)"
-//            self.updateLabel()
-//        })
-//    }
-    
     @IBAction func connectButtonDidPressed(_ sender: UIButton) {
         if priceSocket.isConnected {
-            connectionButton.titleLabel?.text = "Connect"
+            connectionButton.setTitle("Connect", for: .normal)
             priceSocket.webSocket.disconnect()
         } else {
-//            connectionButton.titleLabel?.text = "Disconnect"
+            connectionButton.setTitle("Disconnect", for: .normal)
             priceSocket.webSocket.connect()
         }
     }
